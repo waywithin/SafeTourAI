@@ -1,13 +1,21 @@
 import streamlit as st
 import pickle
 import pandas as pd
+import os
+
+# Get the absolute directory path where app.py is sitting
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# Build bulletproof paths to your files
+model_path = os.path.join(BASE_DIR, "safetour_model.pkl")
+encoder_path = os.path.join(BASE_DIR, "weather_encoder.pkl")
 
 # Load model
-with open("safetour_model.pkl", "rb") as f:
+with open(model_path, "rb") as f:
     model = pickle.load(f)
 
 # Load encoder
-with open("weather_encoder.pkl", "rb") as f:
+with open(encoder_path, "rb") as f:
     encoder = pickle.load(f)
 
 st.title("SafeTour AI Safety Predictor")
